@@ -1,12 +1,6 @@
 // console.log('js is connected');
 
-// Step 1 - catching the calculate btn by ID
-const calculateBtn = document.getElementById("calculate");
-calculateBtn.addEventListener('click', function(){
-    // console.log('click is working');
-
-    // Step 2 - now inside the function we need to fetch the 4 input fields which are income, software, course, internet.
-
+// Step 2 - declaring all the constants globally
     const incomeField = parseFloat(document.getElementById("income").value);
     const softwareField = parseFloat(document.getElementById("software").value);
     const coursesField = parseFloat(document.getElementById("courses").value);
@@ -15,6 +9,18 @@ calculateBtn.addEventListener('click', function(){
     // if you observe you will see i wrote income, software ... inside {}, this means I am trying to show the output in form of object.
     // console.log({incomeField, softwareField, coursesField, internetField});
     console.table({incomeField, softwareField, coursesField, internetField});
+
+// Step 1 - catching the calculate btn by ID
+const calculateBtn = document.getElementById("calculate");
+calculateBtn.addEventListener('click', function(){
+    // console.log('click is working');
+
+/* // Step 2 - declaring all the constants globally
+    const incomeField = parseFloat(document.getElementById("income").value);
+    const softwareField = parseFloat(document.getElementById("software").value);
+    const coursesField = parseFloat(document.getElementById("courses").value);
+    const internetField = parseFloat(document.getElementById("internet").value); */
+
 
     // Step 3 - doing the calculation of our expenses. 
     const totalExpenses = softwareField + coursesField + internetField;
@@ -45,4 +51,6 @@ calculateSavingsBtn.addEventListener("click", function(){
     // Step 7 - fetching the savings input field
     const savingFieldPercentage = parseFloat(document.getElementById("savings").value);
     console.log(savingFieldPercentage);
+
+    // 
 });
