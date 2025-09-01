@@ -32,4 +32,17 @@ calculateBtn.addEventListener('click', function(){
     const remainingBalanceSetInField = document.getElementById("balance");
     remainingBalanceSetInField.innerText = remainingBalance.toFixed(2);
 
+    const resultContainer = document.getElementById("results");
+    resultContainer.classList.remove("hidden")
 })
+
+
+// Step 6 - catch the saving btn
+const calculateSavingsBtn = document.getElementById("calculate-savings");
+calculateSavingsBtn.addEventListener("click", function(){
+    // console.log('btn is clicked');
+
+    // Step 7 - fetching the savings input field
+    const savingFieldPercentage = parseFloat(document.getElementById("savings").value);
+    console.log(savingFieldPercentage);
+});
