@@ -33,7 +33,21 @@ calculateBtn.addEventListener('click', function(){
 
     const resultContainer = document.getElementById("results");
     resultContainer.classList.remove("hidden")
-})
+
+    // step 12 - styling the dive and appending child in the history part
+    const historyItem = document.createElement("div");
+    historyItem.className = 'bg-white p-3 rounded-md border-l-2 border-indigo-500';
+
+    historyItem.innerHTML = `
+         <p class="text-xs text-gray-500">${new Date().toLocaleDateString()}</p>
+         <p class="text-xs text-gray-500">Income: ${incomeField.toFixed(2)}</p>
+         <p class="text-xs text-gray-500">Expenses: ${totalExpenses.toFixed(2)}</p>
+         <p class="text-xs text-gray-500">Balance: ${remainingBalance.toFixed(2)}</p>
+    `;
+
+    const historyContainer = document.getElementById("history-list");
+    historyContainer.insertBefore(historyItem, historyContainer.firstChild);
+});
 
 
 // Step 6 - catch the saving btn
@@ -69,7 +83,7 @@ calculateSavingsBtn.addEventListener("click", function(){
     const savingAmountSettingInField = document.getElementById("savings-amount");
     savingAmountSettingInField.innerText = savingAmount.toFixed(2);
 
-    // Step 10 - Showing the new balance which we get after subrtacting the saved amount 
+    // Step 10 - Showing the new balance which we get after sub the saved amount 
 
     const remainingElement = document.getElementById("remaining-balance");
     remainingElement.innerText = NewBalanceAfterSaving.toFixed(2);
@@ -107,6 +121,8 @@ historyTab.addEventListener("click", function(){
         "font-semibold"
 
     );
+
+    document.getElementById("expense-form").classList.add('hidden');
 
 });
 
