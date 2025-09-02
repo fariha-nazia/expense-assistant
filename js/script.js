@@ -69,10 +69,50 @@ calculateSavingsBtn.addEventListener("click", function(){
     const savingAmountSettingInField = document.getElementById("savings-amount");
     savingAmountSettingInField.innerText = savingAmount.toFixed(2);
 
-    // Step 10 -
+    // Step 10 - Showing the new balance which we get after subrtacting the saved amount 
+
     const remainingElement = document.getElementById("remaining-balance");
     remainingElement.innerText = NewBalanceAfterSaving.toFixed(2);
 
+});
 
+// Step 11 - working with the history btn and container 
+// Step 11.1 - fist catch the btn which will open the history container
+
+const historyTab = document.getElementById("history-tab");
+const assistantTab = document.getElementById("assistant-tab");
+
+historyTab.addEventListener("click", function(){
+    // console.log('btn is working');
+
+    // tep 11.2 - adding style
+    historyTab.classList.add(
+        "text-white",
+        "font-semibold",
+        "bg-gradient-to-l",
+        "from-blue-500",
+        "to-purple-600"
+    );
+    historyTab.classList.remove
+
+    assistantTab.classList.remove(
+        "text-white",
+        "font-semibold",
+        "bg-gradient-to-l",
+        "from-blue-500",
+        "to-purple-600" 
+    );
+    assistantTab.classList.add(
+        "text-gray-600",
+        "font-semibold"
+
+    );
 
 });
+
+
+// class="w-1/2 py-2 rounded-l-md focus:outline-none transition-colors duration-200 text-white font-semibold bg-gradient-to-r from-blue-500 to-purple-600">
+// transition-colors duration-200 text-gray-600 font-semibold
+/*   "transition-colors",
+        "text-gray-600",
+        "font-semibold" */
