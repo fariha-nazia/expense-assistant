@@ -1,3 +1,21 @@
+// validation 4 - Function to class ID and get value
+function getInputValueByID(id){
+    const value = parseFloat(document.getElementById(id).value);
+    return value;
+//     return parseFloat(document.getElementById(id).value);
+};
+
+
+// Validation 4 - show error
+function showErrorById(id){
+     document.getElementById(id).classList.remove("hidden");
+};
+
+// validation 5 - toFixed
+function formateCurrency(amount){
+    return `${amount.toFixed(2)}`;
+}
+
 // console.log('js is connected');
 
 // Step 1 - catching the calculate btn by ID
@@ -5,15 +23,46 @@ const calculateBtn = document.getElementById("calculate");
 calculateBtn.addEventListener('click', function(){
     // console.log('click is working');
 
+    // validation 4.1 
+    const incomeField = getInputValueByID("income");
+    const softwareField = getInputValueByID("software");
+    const coursesField = getInputValueByID("courses");
+    const internetField = getInputValueByID("internet");
+    // console.log(incomeField);
+
+
 // Step 2 - declaring all the constants globally
-    const incomeField = parseFloat(document.getElementById("income").value);
+/*  const incomeField = parseFloat(document.getElementById("income").value);
     const softwareField = parseFloat(document.getElementById("software").value);
     const coursesField = parseFloat(document.getElementById("courses").value);
-    const internetField = parseFloat(document.getElementById("internet").value);
+    const internetField = parseFloat(document.getElementById("internet").value); */
 
     // if you observe you will see i wrote income, software ... inside {}, this means I am trying to show the output in form of object.
     // console.log({incomeField, softwareField, coursesField, internetField});
     // console.table({incomeField, softwareField, coursesField, internetField});
+
+    // Validation 1:
+    if(incomeField <= 0 || isNaN(incomeField)){
+        // document.getElementById("income-error").classList.remove("hidden");
+        showErrorById("income-error");
+        return;
+    };
+    if(softwareField <= 0 || isNaN(softwareField)){
+        // document.getElementById("software-error").classList.remove("hidden");
+        showErrorById("software-error");
+        return;
+    };
+
+    if(coursesField <= 0 || isNaN(coursesField)){
+        // document.getElementById("courses-error").classList.remove("hidden");
+        showErrorById("courses-error");
+        return;
+    }
+    if(internetField <= 0 || isNaN(internetField)){
+        // document.getElementById("internet-error").classList.remove("hidden");
+        showErrorById("internet-error");
+        return;
+    }
 
     // Step 3 - doing the calculation of our expenses. 
     const totalExpenses = softwareField + coursesField + internetField;
@@ -23,6 +72,13 @@ calculateBtn.addEventListener('click', function(){
     const remainingBalance = incomeField - totalExpenses;
     // console.log(remainingBalance);
     // console.table({totalExpenses, remainingBalance});
+
+    // Validation 2
+    if(totalExpenses > incomeField){
+        // document.getElementById("logic-error").classList.remove("hidden");
+        showErrorById("logic-error");
+        return;
+    }
 
     // Step 5 - Now that we have total expense and remaining balance we will set this value in the result section
     const totalExpensesSetInField = document.getElementById("total-expenses");
@@ -40,13 +96,14 @@ calculateBtn.addEventListener('click', function(){
 
     historyItem.innerHTML = `
          <p class="text-xs text-gray-500">${new Date().toLocaleDateString()}</p>
-         <p class="text-xs text-gray-500">Income: ${incomeField.toFixed(2)}</p>
-         <p class="text-xs text-gray-500">Expenses: ${totalExpenses.toFixed(2)}</p>
-         <p class="text-xs text-gray-500">Balance: ${remainingBalance.toFixed(2)}</p>
+         <p class="text-xs text-gray-500">Income: ${formateCurrency(incomeField)}</p>
+         <p class="text-xs text-gray-500">Expenses: ${formateCurrency(totalExpenses)}</p>
+         <p class="text-xs text-gray-500">Balance: ${formateCurrency(remainingBalance)}</p>
     `;
 
     const historyContainer = document.getElementById("history-list");
     historyContainer.insertBefore(historyItem, historyContainer.firstChild);
+    // document.getElementById("history-section").classList.remove('hidden');
 });
 
 
@@ -123,8 +180,42 @@ historyTab.addEventListener("click", function(){
     );
 
     document.getElementById("expense-form").classList.add('hidden');
+    document.getElementById("history-section").classList.remove('hidden');
+});
+
+assistantTab.addEventListener("click", function(){
+    // console.log('assistant btn working');
+    assistantTab.classList.add(
+        "text-white",
+        "font-semibold",
+        "bg-gradient-to-l",
+        "from-blue-500",
+        "to-purple-600"
+    );
+
+    historyTab.classList.remove(
+        "text-white",
+        "font-semibold",
+        "bg-gradient-to-l",
+        "from-blue-500",
+        "to-purple-600" 
+    );
+
+    document.getElementById("expense-form").classList.remove('hidden');
+    document.getElementById("history-section").classList.add('hidden');
+
 
 });
+
+// Live validation
+document.getElementById("income").addEventListener("input", function(){
+    const inputValueIncome = parseFloat(document.getElementById("income").value);
+    // console.log(inputValueIncome)
+        if(inputValueIncome <= 0 || isNaN(inputValueIncome)){
+        document.getElementById("income-error").classList.remove("hidden");
+        return;
+    };
+})
 
 
 // class="w-1/2 py-2 rounded-l-md focus:outline-none transition-colors duration-200 text-white font-semibold bg-gradient-to-r from-blue-500 to-purple-600">
