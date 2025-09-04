@@ -6,17 +6,32 @@ function getInputValueByID(id){
 };
 
 
-// Validation 4 - show error
+// Validation 5 - show error
 function showErrorById(id){
      document.getElementById(id).classList.remove("hidden");
 };
 
-// validation 5 - toFixed
+// validation 6 - toFixed
 function formateCurrency(amount){
     return `${amount.toFixed(2)}`;
 }
 
-// console.log('js is connected');
+// validation 7 - history section
+function addToHistory(incomeField, totalExpenses, remainingBalance){
+    // step 12 - styling the dive and appending child in the history part
+    const historyItem = document.createElement("div");
+    historyItem.className = 'bg-white p-3 rounded-md border-l-2 border-indigo-500';
+
+    historyItem.innerHTML = `
+         <p class="text-xs text-gray-500">${new Date().toLocaleDateString()}</p>
+         <p class="text-xs text-gray-500">Income: ${formateCurrency(incomeField)}</p>
+         <p class="text-xs text-gray-500">Expenses: ${formateCurrency(totalExpenses)}</p>
+         <p class="text-xs text-gray-500">Balance: ${formateCurrency(remainingBalance)}</p>
+    `;
+
+    const historyContainer = document.getElementById("history-list");
+    historyContainer.insertBefore(historyItem, historyContainer.firstChild);
+}
 
 // Step 1 - catching the calculate btn by ID
 const calculateBtn = document.getElementById("calculate");
@@ -90,7 +105,7 @@ calculateBtn.addEventListener('click', function(){
     const resultContainer = document.getElementById("results");
     resultContainer.classList.remove("hidden")
 
-    // step 12 - styling the dive and appending child in the history part
+/*     // step 12 - styling the dive and appending child in the history part
     const historyItem = document.createElement("div");
     historyItem.className = 'bg-white p-3 rounded-md border-l-2 border-indigo-500';
 
@@ -102,8 +117,9 @@ calculateBtn.addEventListener('click', function(){
     `;
 
     const historyContainer = document.getElementById("history-list");
-    historyContainer.insertBefore(historyItem, historyContainer.firstChild);
+    historyContainer.insertBefore(historyItem, historyContainer.firstChild); */
     // document.getElementById("history-section").classList.remove('hidden');
+    addToHistory(incomeField, totalExpenses, remainingBalance);
 });
 
 
